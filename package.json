@@ -1,0 +1,15 @@
+{
+  "name": "quotes-generator-api",
+  "version": "1.0.0",
+  "description": "This is a random quote generator API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "bolu-tife",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
