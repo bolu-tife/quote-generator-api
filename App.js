@@ -14,10 +14,6 @@ app.get("/api/quotes/random", (req, res) => {
 });
 
 
-app.get("/api/quotes", (req, res) => {
-  res.send(quotes);
-});
-
 app.get("/api/quotes/:author", (req, res) => {
 
   const result = quotes.filter((quote) => {
@@ -32,11 +28,12 @@ app.get("/api/quotes/:author", (req, res) => {
 });
 
 
-app.post('/api/quotes', (req, res) => {
+app.route("/api/quotes").get((req, res) => {
+  res.send(quotes);
+}).post((req, res) => {
 
   const { error } = validateQuote(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-
 
   const quote = {
     quote: req.body.quote,
@@ -55,7 +52,7 @@ app.post('/api/quotes', (req, res) => {
 function validateQuote(quote) {
   const schema = Joi.object({
     quote: Joi.string().required(),
-    author: Joi.string()
+    author: Joi.string().allow(null, '')
   });
   return schema.validate(quote);
 }
